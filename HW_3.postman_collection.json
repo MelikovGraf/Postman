@@ -1,0 +1,429 @@
+{
+	"info": {
+		"_postman_id": "e8a409d9-8dd8-48d4-b687-3f0edc04304e",
+		"name": "HW_3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28149167"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"var req = request.data\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(resp.login).to.eql(req.login);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "Graf",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Melikov",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info NOT WORK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// pm.test(\"Status code is 200\", function () {\r",
+							"//     pm.response.to.have.status(200);\r",
+							"// });\r",
+							"\r",
+							"// pm.test(\"age\", function () {\r",
+							"//     pm.expect(resp.age).to.be.ok;\r",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"age\": 28,\r\n    \"salary\": 25000,\r\n    \"name\": \"Graf\",\r\n    \"auth_token\": {{token}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user_info_3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new_data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"var req = request.data\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"name\", function () {\r",
+							"    pm.expect(resp.name).to.eql(req.name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"age\", function () {\r",
+							"    pm.expect(resp.age).to.eql(+req.age);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"salary0\", function () {\r",
+							"    pm.expect(resp.salary[0]).to.eql(+req.salary);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"salary1\", function () {\r",
+							"    pm.expect(+resp.salary[1]).to.eql(req.salary * 2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"salary2\", function () {\r",
+							"    pm.expect(+resp.salary[2]).to.eql(req.salary * 3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"salary equals\", function () {\r",
+							"    pm.expect((+resp.salary[1]) < (+resp.salary[2])).to.be.true;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "28",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "25000",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Graf",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/new_data",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"new_data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_pet_info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"var req = request.data\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"name\", function () {\r",
+							"    pm.expect(resp.name).to.eql(req.name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"age\", function () {\r",
+							"    pm.expect(resp.age).to.eql(+req.age);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"\", function () {\r",
+							"    pm.expect(+req.weight).to.eql(77);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"weight test\", function () {\r",
+							"    pm.expect(req.weight*0.012).to.eql(resp.daily_food);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"weight test\", function () {\r",
+							"    pm.expect(req.weight*2.5).to.eql(resp.daily_sleep);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "28",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "77",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Graf",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/test_pet_info",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"test_pet_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_test_user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"var req = request.data\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"name\", function () {\r",
+							"    pm.expect(resp.name).to.eql(req.name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"age\", function () {\r",
+							"    pm.expect(resp.age).to.eql(+req.age);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"salary\", function () {\r",
+							"    pm.expect(resp.salary).to.eql(+req.salary);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "28",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "25000",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Graf",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/get_test_user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"get_test_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "currency LONG WAIT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"var req = request.data\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/currency",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"currency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "curr by LONG WAIT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"var req = request.data\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "curr_code",
+							"value": "87.25",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/curr_byn",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"curr_byn"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
