@@ -3,7 +3,8 @@
 ![image](https://github.com/MelikovGraf/Postman/assets/98654937/c0a7c5b2-76b6-4d49-9c8b-c594ec3b6fe4)
 
 
-**HW_1**
+**HW_1 POSTMAN**
+
 Создать запросы в Postman.
 
 Protocol: http
@@ -80,7 +81,8 @@ request form data:
 
 
 
-**HW_2**
+**HW_2 POSTMAN**
+
 http://162.55.220.72:5005/user_info_2
 1. Вставить параметр salary из окружения в request
 2. Вставить параметр age из окружения в age
@@ -105,7 +107,6 @@ http://162.55.220.72:5005/user_info_2
 21. Проверить, что параметр u_salary_5_years равен salary*4.2 из request (salary забрать из request.)
 22. ***Написать цикл который выведет в консоль по порядку элементы списка из параметра person.
 
-**HW_2.2 Postman**
 http://162.55.220.72:5005/first
 1. Отправить запрос.
 2. Статус код 200
@@ -186,7 +187,7 @@ http://162.55.220.72:5005/user_info_2
 21. Проверить, что параметр u_salary_5_years равен salary*4.2 из request (salary забрать из request.)
 22. ***Написать цикл который выведет в консоль по порядку элементы списка из параметра person.
 
-HW_3 Postman
+**HW_3 Postman**
 =====
 
 1) необходимо залогиниться
