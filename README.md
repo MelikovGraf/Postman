@@ -7,7 +7,7 @@
 
 Создать запросы в Postman.
 
-Protocol: http12345678901234
+Protocol: http123456789012345
 IP: 162.55.220.72
 Port: 5005
 
