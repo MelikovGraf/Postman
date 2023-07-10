@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "00ce1a22-944e-4df3-b388-319449d6e74b",
 		"name": "HW_2",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "28149167"
 	},
 	"item": [
@@ -13,12 +13,10 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var resp = pm.response.json();\r",
-							"var req = request.data\r",
-							"\r",
 							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(resp.text()).to.include(\"This is the first responce from server!ss\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"This is the first responce from server!ss\");\r",
 							"});\r",
+							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});"
@@ -27,6 +25,15 @@
 					}
 				}
 			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/first"
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -37,41 +44,12 @@
 					"mode": "formdata",
 					"formdata": []
 				},
-				"url": {
-					"raw": "{{url}}/first",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"first"
-					]
-				}
+				"url": "{{url}}"
 			},
 			"response": []
 		},
 		{
-			"name": "serv",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "{{url}}",
-					"host": [
-						"{{url}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "serv get_method",
+			"name": "get_method",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -168,13 +146,140 @@
 						}
 					]
 				},
+				"url": "{{url}}/new_data"
+			},
+			"response": []
+		},
+		{
+			"name": "user_info 2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"var req = request.data\r",
+							"\r",
+							"pm.test(\"1-5\", function () {\r",
+							"    pm.expect(+resp[\"qa_salary_after_1.5_year\"]).to.eql(req.salary * 3.3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3-5\", function () {\r",
+							"    pm.expect(+resp[\"qa_salary_after_3.5_years\"]).to.eql(req.salary * 3.8);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"1-5\", function () {\r",
+							"    pm.expect(+resp[\"qa_salary_after_1.5_year\"]).to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"3-5\", function () {\r",
+							"    pm.expect(+resp[\"qa_salary_after_3.5_years\"]).to.be.ok;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"start_qa_salary\", function () {\r",
+							"    pm.expect(resp.start_qa_salary).to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"EQUALS start_qa_salary\", function () {\r",
+							"    pm.expect(resp.start_qa_salary).to.eql(+req.salary);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"qa_salary_after_12_months\", function () {\r",
+							"    pm.expect(resp.qa_salary_after_12_months).to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"EQUALS qa_salary_after_12_months\", function () {\r",
+							"    pm.expect(resp.qa_salary_after_12_months).to.eql(req.salary * 2.7);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"qa_salary_after_6_months\", function () {\r",
+							"    pm.expect(resp.qa_salary_after_6_months).to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"EQUALS qa_salary_after_6_months\", function () {\r",
+							"    pm.expect(resp.qa_salary_after_6_months).to.eql(req.salary * 2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"person\", function () {\r",
+							"    pm.expect(resp.person).to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"person param name\", function () {\r",
+							"    pm.expect(resp.person.u_name[1]).to.eql(+req.salary);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"person param age\", function () {\r",
+							"    pm.expect(resp.person.u_age).to.eql(+req.age);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"u salary 5\", function () {\r",
+							"    pm.expect(resp.person.u_salary_5_years).to.eql(req.salary * 4.2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cicle person\", function () {\r",
+							"    for (var key in resp.person){\r",
+							"        console.log(key, resp.person[key])\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "g",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "{{url}}/new_data",
+					"raw": "{{url}}/user_info_2?salary=25000&age=28&name=Graf",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"new_data"
+						"user_info_2"
+					],
+					"query": [
+						{
+							"key": "salary",
+							"value": "25000"
+						},
+						{
+							"key": "age",
+							"value": "28"
+						},
+						{
+							"key": "name",
+							"value": "Graf"
+						}
 					]
 				}
 			},
@@ -260,158 +365,7 @@
 						}
 					]
 				},
-				"url": {
-					"raw": "{{url}}/user_info_3",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"user_info_3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "user_info 2",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var resp = pm.response.json();\r",
-							"var req = request.data\r",
-							"\r",
-							"console.log(resp[\"qa_salary_after_1.5_year\"])\r",
-							"pm.test(\"1-5\", function () {\r",
-							"    pm.expect(+resp[\"qa_salary_after_1.5_year\"]).to.eql(req.salary * 3.3);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"3-5\", function () {\r",
-							"    pm.expect(+resp[\"qa_salary_after_3.5_years\"]).to.eql(req.salary * 3.8);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"1-5\", function () {\r",
-							"    pm.expect(+resp[\"qa_salary_after_1.5_year\"]).to.be.ok;\r",
-							"});\r",
-							"\r",
-							"pm.test(\"3-5\", function () {\r",
-							"    pm.expect(+resp[\"qa_salary_after_3.5_years\"]).to.be.ok;\r",
-							"});\r",
-							"\r",
-							"\r",
-							"pm.test(\"start_qa_salary\", function () {\r",
-							"    pm.expect(resp.start_qa_salary).to.be.ok;\r",
-							"});\r",
-							"\r",
-							"pm.test(\"EQUALS start_qa_salary\", function () {\r",
-							"    pm.expect(resp.start_qa_salary).to.eql(+req.salary);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"qa_salary_after_12_months\", function () {\r",
-							"    pm.expect(resp.qa_salary_after_12_months).to.be.ok;\r",
-							"});\r",
-							"\r",
-							"pm.test(\"EQUALS qa_salary_after_12_months\", function () {\r",
-							"    pm.expect(resp.qa_salary_after_12_months).to.eql(req.salary * 2.7);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"qa_salary_after_6_months\", function () {\r",
-							"    pm.expect(resp.qa_salary_after_6_months).to.be.ok;\r",
-							"});\r",
-							"\r",
-							"pm.test(\"EQUALS qa_salary_after_6_months\", function () {\r",
-							"    pm.expect(resp.qa_salary_after_6_months).to.eql(req.salary * 2);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"person\", function () {\r",
-							"    pm.expect(resp.person).to.be.ok;\r",
-							"});\r",
-							"\r",
-							"pm.test(\"person param name\", function () {\r",
-							"    pm.expect(resp.person.u_name[1]).to.eql(+req.salary);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"person param age\", function () {\r",
-							"    pm.expect(resp.person.u_age).to.eql(+req.age);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"u salary 5\", function () {\r",
-							"    pm.expect(resp.person.u_salary_5_years).to.eql(req.salary * 4.2);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"All projects is deleted\", function () {\r",
-							"    for (var i = 0; i < resp.person.length; i++) {\r",
-							"        pm.expect(resp.person[i].to.be.ok)\r",
-							"        console.log(resp.person[i])\r",
-							"    }\r",
-							"});\r",
-							"\r",
-							"// var i = 0 \r",
-							"// while(i<3) {\r",
-							"//     console.log(resp.person[i])\r",
-							"//     i++\r",
-							"// }"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "g",
-							"type": "text"
-						},
-						{
-							"key": "age",
-							"value": "3",
-							"type": "text"
-						},
-						{
-							"key": "salary",
-							"value": "3",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{url}}/user_info_2?salary=25000&age=28&name=Graf",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"user_info_2"
-					],
-					"query": [
-						{
-							"key": "salary",
-							"value": "25000"
-						},
-						{
-							"key": "age",
-							"value": "28"
-						},
-						{
-							"key": "name",
-							"value": "Graf"
-						}
-					]
-				}
+				"url": "{{url}}/user_info_3"
 			},
 			"response": []
 		},
@@ -547,10 +501,10 @@
 							"    pm.expect(resp.age).to.eql((+reqUrl.age));\r",
 							"});\r",
 							"\r",
-							"console.log(reqUrl.salary)\r",
-							"console.log(resp.salary[0])\r",
-							"console.log(resp.salary[1])\r",
-							"console.log(resp.salary[2])\r",
+							"// console.log(reqUrl.salary)\r",
+							"// console.log(resp.salary[0])\r",
+							"// console.log(resp.salary[1])\r",
+							"// console.log(resp.salary[2])\r",
 							"\r",
 							"pm.test(\"salary[0]\", function () {\r",
 							"    pm.expect(+resp.salary[0]).to.eql(+reqUrl.salary);\r",
@@ -566,9 +520,9 @@
 							"\r",
 							"var i =0\r",
 							"while(i<3) {\r",
-							"    console.log(+resp.salary[i])\r",
+							"    if(i==resp.salary.length) {break}\r",
+							"    console.log(resp.salary[i])\r",
 							"    i++\r",
-							"    if(i=3) {break}\r",
 							"}"
 						],
 						"type": "text/javascript"
